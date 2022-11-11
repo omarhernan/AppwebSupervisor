@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIN</title>
+     <link rel="stylesheet" href="CSS/style.css">
+</head>
+<header>
+    <h3>REVISOR WEB</h3>
+</header>
+<body>
+    <section class="container-main">
+        <section class="container-main1">
+            <p> Datos a Revisar Receptor: <br> 
+                NIT: 3441024  <br>
+                Nombre: Municipalidad de Guatemala 
+            </p>
+            <input  type = "file" id = "inpFile">
+            <label for = "inpFile" class ="inicio-sesion" > <img src = "./img/Documento.png" alt="Cargar archivo"></label>
+            <textarea id = "resultText" class = "item-1" placeholder = "Detalle texto extraido"></textarea>
+        </section>
+        <form class = "container-main2">
+            <button  type ="button" id = "btnUpload" >Revisar</button>
+            <button  type ="button" id = "nueva" class="button-nuevo">
+                <a class="inicio-sesion-registro" href="./Main.html">Nuevo</a></button>
+            <label class = "label-revisor" for="" id = "alerta"> <img src="./img/Correcto.png" alt=""></label>
+        </form>
+    </section>
+
+    <script>
+
+        const inpFile = document.getElementById("inpFile");
+        const btnUpload = document.getElementById("btnUpload");
+        var resultText = document.getElementById("resultText");
+        var alerta_res = document.getElementById('alerta');
+        const nuevo = document.getElementById("nueva");
+
+        btnUpload.addEventListener("click", () =>{
+            const formData = new FormData();
+
+            formData.append("pdfFile", inpFile.files[0]);
+
+
+
+            fetch("/extract-text", {
+                method: "post",
+                body: formData
+            }).then(response =>{
+                return response.text();
+            }).then(extractedText =>{
+                resultText.value = extractedText;
+                resultado = [resultText.value]
+                console.log(resultado);
+                btnUpload.style.display = "none";
+                nuevo.style.display = "block";
+                alerta_res.style.display = "block";
+            
+            });
+        });
+          
+        nuevo.addEventListener("click", nueva);
+
+        function nueva(){
+            btnUpload.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

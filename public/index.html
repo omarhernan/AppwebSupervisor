@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIO</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+
+</head>
+
+<body>
+    <section class="container">
+        <section class="container-panel">
+            <h2>REVISOR</h2>
+            <h2>WEB</h2>
+        </section>
+        <form class="container-form" action= "Main.html" name="form" onsubmit="return validar()">
+            <input value ="" class = "item-1" placeholder="Usuario" id="correo" name="usuario">
+            <label class ="label-inicio" for="" id="error_usu">Ingrese usuario</label>
+            <input value ="" type="password" placeholder="Contraseña" id="pass" name="contrasena">
+            <label class = "label-inicio" for="" id="error_contra">Ingrese contraseña</label>
+            <button id="btn" onclick="btn() "> Ingresar </button>
+             <a href="./Registro.html">Crear cuenta</a>
+        </form>
+    </section>
+
+    <script src="./Acciones.js"></script>
+</body>
+</html>
